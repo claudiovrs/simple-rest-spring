@@ -7,36 +7,29 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class CalculatorController {
 
-	private static final String template = "Total: %s";
-	
-
 	@RequestMapping(value={"", "/", "/home" , "/index"})
 	public String get() {
 		
 		return "Hello, let's calculate!";
 	}
 	
-	@RequestMapping("/sum")
-	public String sum(@RequestParam(value="number1", defaultValue="0") float number1, @RequestParam(value="number2", defaultValue="0") float number2) {
-		
-		return String.format(template, number1 + number2);
+	@RequestMapping("/addition")
+	public Calculator addition(@RequestParam(value="number1", defaultValue="0") float number1, @RequestParam(value="number2", defaultValue="0") float number2) {
+		return new Calculator(number1, number2, number1 + number2);
 	}
 	
 	@RequestMapping("/division")
-	public String division(@RequestParam(value="number1", defaultValue="0") float number1, @RequestParam(value="number2", defaultValue="0") float number2) {
-		
-		return String.format(template, number1 / number2);
+	public Calculator division(@RequestParam(value="number1", defaultValue="0") float number1, @RequestParam(value="number2", defaultValue="0") float number2) {
+		return new Calculator(number1, number2, number1 / number2);
 	}
 	
 	@RequestMapping("/subtraction")
-	public String subtraction(@RequestParam(value="number1", defaultValue="0") float number1, @RequestParam(value="number2", defaultValue="0") float number2) {
-		
-		return String.format(template, number1 - number2);
+	public Calculator subtraction(@RequestParam(value="number1", defaultValue="0") float number1, @RequestParam(value="number2", defaultValue="0") float number2) {
+		return new Calculator(number1, number2, number1 - number2);
 	}
 	
 	@RequestMapping("/multiplication")
-	public String multiplication(@RequestParam(value="number1", defaultValue="0") float number1, @RequestParam(value="number2", defaultValue="0") float number2) {
-		
-		return String.format(template, number1 * number2);
+	public Calculator multiplication(@RequestParam(value="number1", defaultValue="0") float number1, @RequestParam(value="number2", defaultValue="0") float number2) {
+		return new Calculator(number1, number2, number1 * number2);
 	}
 }
